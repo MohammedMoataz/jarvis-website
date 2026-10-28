@@ -7,6 +7,7 @@ import { Providers } from "@/components/Providers";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SITE_URL } from "@/lib/site";
+import { getRelease } from "@/lib/release";
 
 const display = Chakra_Petch({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-chakra" });
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-plex-sans" });
@@ -33,7 +34,8 @@ const themeScript = `(function(){var t;try{t=localStorage.getItem("theme")}catch
 if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";
 document.documentElement.dataset.theme=t})()`;
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const release = await getRelease();
   return (
     <html
       lang="en"
@@ -51,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <Nav />
           <main id="main">{children}</main>
-          <Footer version={null} />
+          <Footer version={release.version} />
         </Providers>
       </body>
     </html>
