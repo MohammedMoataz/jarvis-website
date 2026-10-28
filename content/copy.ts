@@ -121,7 +121,7 @@ const offline: Section = {
 const privacy: Section = {
   eyebrow: "Privacy",
   title: "Private by design.",
-  lead: "The AI runs on the owner's machine. No outside AI service ever sees what you write.",
+  lead: "The AI that files and answers runs on the owner's machine. An outside assistant sees your library only if you connect one.",
   icon: "pi pi-shield",
   chips: ["Ollama", "your account only", "audited"],
   points: [

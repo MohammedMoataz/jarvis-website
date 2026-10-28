@@ -13,7 +13,7 @@ const UNAVAILABLE = `<!doctype html><meta charset="utf-8"><meta name="viewport" 
 export async function GET(_request: Request, ctx: RouteContext<"/download/[kind]">) {
   const { kind } = await ctx.params;
   const token = process.env.JARVIS_RELEASES_TOKEN ?? "";
-  const result = token ? await resolveDownload(kind, await getRelease(), token, fetch) : { status: 503 as const };
+  const result = token ? await resolveDownload(kind, getRelease, token, fetch) : { status: 503 as const };
   if (result.status === 302) {
     return new Response(null, { status: 302, headers: { location: result.location, "cache-control": "no-store" } });
   }

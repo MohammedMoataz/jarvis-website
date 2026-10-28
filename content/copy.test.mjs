@@ -25,6 +25,7 @@ test("no claim JARVIS does not back", () => {
     "cloud ai",
     "gpt",
     "testimonial",
+    "ever sees",
   ]) {
     assert.ok(!text.includes(phrase), `copy must not say "${phrase}"`);
   }
@@ -32,7 +33,7 @@ test("no claim JARVIS does not back", () => {
 
 test("the honest parts are said", () => {
   const text = JSON.stringify(copy);
-  for (const phrase of ["Not in your library", "owner", "audited"]) {
+  for (const phrase of ["Not in your library", "owner", "audited", "only if you connect one"]) {
     assert.ok(text.includes(phrase), `copy must say "${phrase}"`);
   }
 });

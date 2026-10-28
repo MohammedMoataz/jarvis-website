@@ -7,16 +7,18 @@ const ASSET = "https://api.github.com/repos/MohammedMoataz/JARVIS/releases/asset
 const SIGNED_HOSTS = ["https://objects.githubusercontent.com/", "https://release-assets.githubusercontent.com/"];
 
 // Asks GitHub for the asset with the server's token and hands back the signed URL it redirects
-// to. The visitor never sees the token, the private repo URL, or GitHub's error text.
+// to. The visitor never sees the token, the private repo URL, or GitHub's error text. The release
+// is read at click time, so a GitHub failure or a malformed release is a 503 too, never a throw.
 export async function resolveDownload(
   kind: string,
-  release: Release,
+  loadRelease: () => Promise<Release>,
   token: string,
   fetchImpl: typeof fetch,
 ): Promise<DownloadResult> {
-  const asset = kind === "apk" ? release.apk : kind === "extension" ? release.extension : null;
-  if (!asset) return { status: 404 };
+  if (kind !== "apk" && kind !== "extension") return { status: 404 };
   try {
+    const release = await loadRelease();
+    const asset = kind === "apk" ? release.apk : release.extension;
     const res = await fetchImpl(ASSET + asset.id, {
       headers: { Authorization: `Bearer ${token}`, Accept: "application/octet-stream" },
       redirect: "manual",
