@@ -15,7 +15,15 @@ export function pageMeta({ title, description, path }: { title?: string; descrip
     description,
     robots: { index: false, follow: false },
     alternates: { canonical: path },
-    openGraph: { type: "website", siteName: "JARVIS", url: path, title: ogTitle, description },
+    // A page's own openGraph block drops app/opengraph-image, so every page names it here.
+    openGraph: {
+      type: "website",
+      siteName: "JARVIS",
+      url: path,
+      title: ogTitle,
+      description,
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "JARVIS, your second brain" }],
+    },
     twitter: { card: "summary_large_image", title: ogTitle, description },
   } satisfies Metadata;
 }
