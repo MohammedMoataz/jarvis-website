@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 
 // Canonical origin for links and the share preview. No trailing slash: callers append paths.
-// Kept free of `@/` imports so `node --test` can load it directly.
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://jarvis-website.vercel.app").replace(/\/+$/, "");
+// On Vercel it is the project's own production domain (jarvis-website.vercel.app belongs to
+// someone else). Kept free of `@/` imports so `node --test` can load it directly.
+export function siteUrl(env: Record<string, string | undefined>): string {
+  const vercel = env.VERCEL_PROJECT_PRODUCTION_URL;
+  return (env.NEXT_PUBLIC_SITE_URL || (vercel ? `https://${vercel}` : "http://localhost:3000")).replace(/\/+$/, "");
+}
+
+export const SITE_URL = siteUrl(process.env);
 
 const HOME_TITLE = "JARVIS — your second brain";
 
