@@ -155,6 +155,121 @@ const getIt = {
   more: "Step-by-step setup",
 };
 
-export const copy = { hero, sayItOnce, askYourLibrary, readItLater, yourDay, bodyAndHabits, offline, privacy, assistants, getIt };
+const getStarted = {
+  title: "Get started",
+  lead: "Two downloads, one address, one account. About ten minutes.",
+  phoneTitle: "On your Android phone",
+  phone: [
+    "Tap “Android app (APK)” above and open the downloaded file.",
+    "If Android asks, allow your browser to install unknown apps, then tap Install.",
+    "Open JARVIS and paste the server address from this page.",
+    "Choose “Create an account”, enter an email or a username, and a password of at least 8 characters.",
+    "Answer the short setup: about you, your day, and training. You can skip it.",
+    "Tap the centre button and capture your first thought.",
+  ],
+  extensionTitle: "In Chrome on your computer",
+  extension: [
+    "Tap “Chrome extension (zip)” above and unzip it into a folder you will keep.",
+    "Open chrome://extensions and turn on Developer mode (top right).",
+    "Click Load unpacked and choose the unzipped folder.",
+    "Pin JARVIS from the puzzle-piece menu, then click it to open the side panel.",
+    "Paste the server address. Chrome asks once to let JARVIS reach that address: allow it.",
+    "Sign in with the same account you made on the phone.",
+  ],
+  google: "Continue with Google works only if the owner has added your Google account. Otherwise use an email or username and a password.",
+  iphone: "iPhone: not available. JARVIS has an Android app and a Chrome extension.",
+  updatingTitle: "Updating",
+  updating: [
+    "Phone: download the new APK from this page and install it over the old one. Your data stays.",
+    "Chrome: unzip the new version into the same folder, then click the reload arrow on JARVIS in chrome://extensions.",
+  ],
+  troubleshootingTitle: "If something goes wrong",
+  troubleshooting: [
+    {
+      q: "JARVIS shows as offline.",
+      a: "It runs on the owner's PC, which is off or restarting. Your phone keeps what you capture and sends it later. Try again in a while.",
+    },
+    {
+      q: "Creating an account fails.",
+      a: "Registration may be closed. Ask the owner to open it or to make an account for you.",
+    },
+    {
+      q: "Android blocks the install.",
+      a: "Allow installs from your browser in Settings, or tap “Install anyway” if Play Protect asks.",
+    },
+    {
+      q: "The server address changed.",
+      a: "Open JARVIS while the old address still works so everything can sync, then sign out and sign in with the new address. Signing out clears what is stored on the device, so let it sync first.",
+    },
+  ],
+};
+
+const howItWorks = {
+  title: "How it works",
+  lead: "For the curious and the engineers: what happens to a line you type, where it runs, and how it stays private.",
+  loopTitle: "The loop",
+  loop: [
+    "Capture: the line is stored first, raw, with an id your device made, so a retry is never a duplicate.",
+    "Classify: a local model decides task, note, link, weight or question, held to a fixed schema.",
+    "File: the line becomes a real task, note or saved link; times are worked out in code, in your time zone.",
+    "Index: notes, tasks, links and documents are split into passages and embedded for search.",
+    "Recall: questions search by meaning and by words, and answers cite the passages they used.",
+    "Act: reminders, the daily plan, the check-in and the weekly review keep it moving.",
+  ],
+  diagramTitle: "Architecture",
+  patternsTitle: "How the code is built",
+  patterns: [
+    { title: "Bounded contexts", text: "19 contexts, each owning its data. None reads another's collections; a lint rule enforces it." },
+    { title: "Vertical slices", text: "One folder per use case, holding its handler, its endpoint and its tests." },
+    { title: "Commands and queries", text: "Changes are REST commands, reads are GraphQL, and one socket per device carries live replies." },
+    { title: "Transactional outbox", text: "Every change writes its event in the same transaction, delivered at least once to idempotent consumers." },
+    { title: "Model work off the event path", text: "Classifying, summarising and embedding run in worker loops with heartbeats, so one slow call holds nothing up." },
+    { title: "Checks that are proven", text: "Each architecture rule has a probe: a deliberately bad file that must make the check fail." },
+  ],
+  aiTitle: "Local AI",
+  ai: [
+    "Ollama on the owner's PC runs qwen2.5:3b-instruct for chat and classification, and embeddinggemma for search.",
+    "Extraction is held to a JSON schema, then checked in code: a number the line never said is thrown away.",
+    "The model never does dates or arithmetic: “at six” becomes 18:00 in your time zone in code.",
+    "Prompts stay byte-for-byte stable between turns, so the model answers quickly.",
+  ],
+  syncTitle: "Offline sync",
+  sync: [
+    "The phone keeps notes, tasks and links in a local database and sends changes in one batch.",
+    "Each change carries the server time it was based on; an edit made on an older copy is refused as stale and the phone takes the server's version.",
+    "Another device's change reaches you within seconds through a nudge on the socket.",
+  ],
+  privacyTitle: "Privacy model",
+  privacy: [
+    "Every row carries its owner, and every search filters by you inside the database query.",
+    "Each renewal of a session swaps its renewal token for a new one; replaying an old one ends the whole session.",
+    "The owner's view of a member's library is read-only and audited, and the member sees each access.",
+    "Only one port is open to the world: everything goes through a single edge.",
+  ],
+  stackTitle: "Stack",
+  stack: [
+    "NestJS backend · MongoDB and PostgreSQL",
+    "Flutter phone app with an offline database",
+    "Chrome extension built with WXT",
+    "Admin portal in Next.js",
+    "Ollama for local AI",
+    "Docker Compose behind nginx",
+  ],
+};
+
+export const copy = {
+  hero,
+  sayItOnce,
+  askYourLibrary,
+  readItLater,
+  yourDay,
+  bodyAndHabits,
+  offline,
+  privacy,
+  assistants,
+  getIt,
+  getStarted,
+  howItWorks,
+};
 
 export const SECTIONS = ["sayItOnce", "askYourLibrary", "readItLater", "yourDay", "bodyAndHabits", "offline", "privacy", "assistants"] as const;

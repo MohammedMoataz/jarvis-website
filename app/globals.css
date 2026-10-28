@@ -501,6 +501,236 @@ h2 {
   }
 }
 
+/* Inner pages */
+.page {
+  display: grid;
+  gap: clamp(32px, 5vw, 56px);
+  padding-block: clamp(40px, 7vw, 80px) 0;
+}
+
+.page-head {
+  display: grid;
+  gap: 14px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.steps {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.steps h2 {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.steps h2 .pi {
+  color: var(--accent);
+}
+
+.steps ol,
+.steps ul {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.steps ol li::marker {
+  font-family: var(--mono);
+  color: var(--accent);
+}
+
+.notes {
+  display: grid;
+  gap: 8px;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--amber);
+  padding-left: 16px;
+}
+
+.faq {
+  display: grid;
+  gap: 14px;
+}
+
+.faq dl {
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.faq dt {
+  font-weight: 600;
+  padding-top: 12px;
+}
+
+.faq dd {
+  margin: 4px 0 0;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border);
+  color: var(--ink-soft);
+}
+
+/* How it works */
+.hiw-block {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.loop {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: loop;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.loop li {
+  counter-increment: loop;
+  display: grid;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.loop li strong::before {
+  content: counter(loop, decimal-leading-zero) "  ";
+  font: 500 12px var(--mono);
+  color: var(--accent);
+}
+
+.loop li span {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.arch-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.arch {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  display: grid;
+  gap: 10px;
+  min-width: 640px;
+}
+
+.arch-tier {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.arch-tier:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.arch-name {
+  font: 500 12px var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 8px;
+}
+
+.arch-name span {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.arch-boxes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.arch-box {
+  display: grid;
+  gap: 2px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 7px 11px;
+  font-size: 14px;
+}
+
+.arch-box.key {
+  border-color: var(--accent);
+}
+
+.arch-box small {
+  font: 12px var(--mono);
+  color: var(--muted);
+}
+
+.arch-many .arch-box {
+  font: 13px var(--mono);
+  padding: 5px 9px;
+}
+
+.patterns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.pattern {
+  display: grid;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.pattern h3 {
+  font-size: 17px;
+}
+
+.pattern p {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.stack-chip {
+  font: 13px var(--mono);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  color: var(--ink-soft);
+}
+
 /* Download card: the two downloads and the owner's server address. */
 .dl-card {
   display: grid;
