@@ -196,6 +196,118 @@ svg {
   font-size: 13px;
 }
 
+/* Download card: the two downloads and the owner's server address. */
+.dl-card {
+  display: grid;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(18px, 3vw, 28px);
+  box-shadow: 0 0 0 1px var(--glow), 0 24px 60px -30px var(--glow);
+}
+
+.dl-meta,
+.dl-label {
+  font: 500 12px var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dl-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.p-button.dl-button {
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Lara's colours live in @layer primereact, and the unlayered `a` rule above beats any layered
+   rule, so link-styled buttons restate theirs here. */
+a.p-button,
+a.p-button:hover {
+  color: var(--surface);
+  text-decoration: none;
+}
+
+a.p-button.p-button-outlined,
+a.p-button.p-button-outlined:hover {
+  color: var(--accent);
+}
+
+.dl-size {
+  font-weight: 400;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.dl-server {
+  display: grid;
+  gap: 8px;
+  border-top: 1px dashed var(--border);
+  padding-top: 18px;
+}
+
+.dl-server-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dl-address {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+}
+
+.dl-input {
+  flex: 1;
+  min-width: 0;
+  font: 14px var(--mono);
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+}
+
+.dl-hint,
+.dl-ask {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 22%, transparent);
+}
+
+.dot-offline::before {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber) 22%, transparent);
+}
+
 /* The ring: the arc-reactor mark, turning once every 40 s. */
 .ring-spin {
   animation: ring-turn var(--ring-turn) linear infinite;
