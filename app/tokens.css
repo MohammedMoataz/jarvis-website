@@ -1,0 +1,60 @@
+/* Tokens from JARVIS packages/tokens/tokens.json. Arc is the only brand colour; gold marks recall
+   and records only; amber is attention. The variable names (--bg, --surface, --accent, ...) are the
+   ones scripts/themes.mjs maps PrimeReact's Lara colours onto. Dark is the default look; the theme
+   is set on <html data-theme> before first paint (app/layout.tsx). */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #060a10; /* void */
+  --surface: #0c1420; /* hull */
+  --surface-2: #101b2b;
+  --border: #1c2c40; /* trace */
+  --border-strong: #2b4060;
+  --text: #e6eef5;
+  --ink-soft: #b7c7d6;
+  --muted: #8ea3b8;
+  --accent: #3cd6f2; /* arc */
+  --accent-hover: #8ae6f7;
+  --accent-contrast: #060a10;
+  --accent-2: #2aa9c4;
+  --arc-deco: #3cd6f2;
+  --gold: #d9a441;
+  --amber: #ffb13b;
+  --green: #43d18c;
+  --red: #e5484d;
+  --glow: rgba(60, 214, 242, 0.16);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef3f7;
+  --surface: #ffffff;
+  --surface-2: #e4ecf2;
+  --border: #d2dce6;
+  --border-strong: #9db0c2;
+  --text: #0c1420;
+  --ink-soft: #2d3e50;
+  --muted: #4a5d70;
+  /* Token arc #0a86a6 is 4.2:1 under white text; text and buttons use a deeper arc (5.7:1). */
+  --accent: #07708b;
+  --accent-hover: #055a70;
+  --accent-contrast: #ffffff;
+  --accent-2: #0b6f8a;
+  --arc-deco: #0a86a6;
+  --gold: #8e6510;
+  --amber: #a86200;
+  --green: #13804b;
+  --red: #c21f2a;
+  --glow: rgba(10, 134, 166, 0.14);
+}
+
+:root {
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --ring-turn: 40s;
+  --wrap: 72rem;
+  --display: var(--font-chakra), "Segoe UI", system-ui, sans-serif;
+  --sans: var(--font-plex-sans), -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: var(--font-plex-mono), ui-monospace, Consolas, monospace;
+}
