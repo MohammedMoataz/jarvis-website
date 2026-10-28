@@ -14,6 +14,10 @@ const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], 
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono" });
 
 // Pages set their own canonical URL, Open Graph and Twitter blocks through pageMeta().
+// Every page re-renders at most once a minute: a new release or tunnel address reaches visitors
+// without a deploy (the fetches in lib/release.ts and lib/server-core.ts carry their own windows).
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: "JARVIS — your second brain", template: "%s · JARVIS" },

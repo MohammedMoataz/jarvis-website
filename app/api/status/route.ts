@@ -7,5 +7,5 @@ export const runtime = "nodejs";
 export const revalidate = 60;
 
 export async function GET() {
-  return Response.json({ status: await checkHealth(getServerUrl(), fetch) });
+  return Response.json({ status: await checkHealth(await getServerUrl(), fetch) });
 }

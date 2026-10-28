@@ -7,7 +7,8 @@ export { formatSize } from "./release-core.ts";
 
 const LATEST = "https://api.github.com/repos/MohammedMoataz/JARVIS/releases/latest";
 
-// The latest JARVIS release, read once per build. The JARVIS repo is private, so this needs
+// The latest JARVIS release, re-read every 5 minutes, so a new release reaches the site with no
+// deploy. The JARVIS repo is private, so this needs
 // JARVIS_RELEASES_TOKEN (read-only Contents on JARVIS). Without it, only an explicit
 // JARVIS_RELEASE_FIXTURE=1 (CI and local dev) falls back to the checked-in v1.10.0 payload.
 export async function getRelease(): Promise<Release> {
@@ -18,7 +19,7 @@ export async function getRelease(): Promise<Release> {
   }
   const res = await fetch(LATEST, {
     headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github+json" },
-    cache: "force-cache",
+    next: { revalidate: 300 },
     signal: AbortSignal.timeout(15000),
   });
   if (!res.ok) throw new Error(`GitHub answered ${res.status} for the latest JARVIS release`);

@@ -21,7 +21,7 @@ export default async function GetStarted() {
         <h1>{g.title}</h1>
         <p className="feature-lead">{g.lead}</p>
       </header>
-      <DownloadCard release={release} serverUrl={getServerUrl()} />
+      <DownloadCard release={release} serverUrl={await getServerUrl()} />
       <div className="steps-grid">
         <Steps title={g.phoneTitle} steps={g.phone} icon="pi pi-mobile" />
         <Steps title={g.extensionTitle} steps={g.extension} icon="pi pi-desktop" />

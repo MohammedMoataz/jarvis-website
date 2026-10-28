@@ -15,4 +15,10 @@ npm test
 ```
 
 Next.js 16 · PrimeReact 10.9.9 (Lara, recoloured by `scripts/themes.mjs` onto `app/tokens.css`) ·
-deployed to Vercel by `.github/workflows/deploy.yml`.
+deployed by Vercel's Git integration on every push to `main` (`vercel.json` runs lint, typecheck and
+tests before the build). No GitHub Actions: the private repo has no Actions minutes.
+
+The site re-reads the latest JARVIS release every 5 minutes and the server address (the JARVIS
+repository variable `JARVIS_SERVER_URL`, set by JARVIS `scripts/publish-tunnel.mjs`) every minute,
+so neither needs a deploy. Both use the Vercel env `JARVIS_RELEASES_TOKEN`: a fine-grained token on
+JARVIS only, Contents read and Variables read.

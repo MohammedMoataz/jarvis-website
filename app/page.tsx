@@ -31,7 +31,7 @@ export default async function Home() {
           <p className="feature-lead">{g.lead}</p>
           <Link href="/get-started">{g.more} →</Link>
         </Reveal>
-        <DownloadCard release={release} serverUrl={getServerUrl()} />
+        <DownloadCard release={release} serverUrl={await getServerUrl()} />
       </section>
     </>
   );
