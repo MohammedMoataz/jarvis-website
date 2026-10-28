@@ -28,6 +28,10 @@ Nothing has to trigger a deploy:
   only a bare `https://*.trycloudflare.com` origin.
 - Pages re-render at most once a minute.
 
+After a release, open the site's Vercel runtime logs once: a release the site cannot read (other
+asset names, a missing file) leaves the pages on the last good version and the downloads on the
+"unavailable" page, and the only trace is an error there.
+
 Both reads use one Vercel environment variable, `JARVIS_RELEASES_TOKEN`: a fine-grained token on
 the JARVIS repo only, with Contents read and Variables read. It stays on the server; no page or
 script carries it or a link to the private repo.

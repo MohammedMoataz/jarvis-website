@@ -42,7 +42,7 @@ export function ServerAddress({ url }: { url: string }) {
         />
       </div>
       <p className="dl-hint" aria-live="polite">
-        {state === "manual" ? "Press Ctrl+C to copy." : "Paste this when JARVIS asks for a server."}
+        {state === "manual" ? "Press Ctrl+C, or long-press to copy." : "Paste this when JARVIS asks for a server."}
       </p>
     </>
   );

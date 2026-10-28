@@ -16,6 +16,7 @@ export async function resolveDownload(
   fetchImpl: typeof fetch,
 ): Promise<DownloadResult> {
   if (kind !== "apk" && kind !== "extension") return { status: 404 };
+  if (!token) return { status: 503 };
   try {
     const release = await loadRelease();
     const asset = kind === "apk" ? release.apk : release.extension;
@@ -32,4 +33,18 @@ export async function resolveDownload(
   } catch {
     return { status: 503 };
   }
+}
+
+// The page a visitor sees instead of a file. A dead link is not an outage, so only 503 says
+// "try again".
+export function downloadPage(status: 404 | 503): string {
+  const [title, text] =
+    status === 404
+      ? ["No such download", "No such download. The phone app and the browser extension are on Get started."]
+      : ["Download unavailable", "Download unavailable right now. Try again in a minute, or ask the owner."];
+  return `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>${title} · JARVIS</title>
+<body style="font:16px/1.6 system-ui,sans-serif;max-width:36rem;margin:15vh auto;padding:0 20px">
+<p>${text}</p>
+<p><a href="/get-started">Back to Get started</a></p></body>`;
 }
