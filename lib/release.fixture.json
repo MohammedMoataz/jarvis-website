@@ -1,0 +1,10 @@
+{
+  "tag_name": "v1.10.0",
+  "published_at": "2026-10-24T00:41:14Z",
+  "draft": false,
+  "prerelease": false,
+  "assets": [
+    { "id": 670827161, "name": "jarvis-1.10.0.apk", "size": 69572467 },
+    { "id": 670827157, "name": "jarvis-extension-1.10.0-chrome.zip", "size": 187221 }
+  ]
+}
