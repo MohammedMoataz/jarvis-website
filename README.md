@@ -1,6 +1,6 @@
 # JARVIS website
 
-The landing page for [JARVIS](https://jarvis-website-ashen.vercel.app), a private second brain:
+The landing page for [JARVIS](https://live-jarvis.vercel.app), a private second brain:
 what it does, how it works, and the downloads for the latest Android app and Chrome extension,
 with the owner's server address and whether it is online.
 
